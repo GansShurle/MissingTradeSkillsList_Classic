@@ -66,15 +66,16 @@ MTSLUI_FILTER_FRAME = {
     ----------------------------------------------------------------------------------------------------------
     InitialiseFirstRow = function (self)
         -- Search box with button
-        self.ui_frame.search_box = CreateFrame("EditBox", self.filter_frame_name .. "_TF", self.ui_frame)
-        self.ui_frame.search_box:SetBackdrop({
-            bgFile = "Interface/Tooltips/UI-Tooltip-Background",
-            edgeFile = "Interface/Tooltips/UI-Tooltip-Border",
-            tile = true,
-            tileSize = 16,
-            edgeSize = 16,
-            insets = { left = 4, right = 4, top = 4, bottom = 4 }
-        })
+        self.ui_frame.search_box = CreateFrame("EditBox", self.filter_frame_name .. "_TF", self.ui_frame, _G.BackdropTemplateMixin and "BackdropTemplate")
+		local backdropInfo = {
+			bgFile = "Interface\\Tooltips\\UI-Tooltip-Background",
+			edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+			tile = true,
+			tileSize = 16,
+			edgeSize = 16,
+			insets = { left = 4, right = 4, top = 4, bottom = 4 }
+		}
+		self.ui_frame.search_box:SetBackdrop(backdropInfo)
         --  Black background
         self.ui_frame.search_box:SetBackdropColor(0,0,0,1)
         -- make cursor appear in the textbox

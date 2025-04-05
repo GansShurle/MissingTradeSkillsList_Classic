@@ -20,21 +20,24 @@ MTSLUI_TOOLS = {
 	-- returns			Frame		Returns the created frame
 	----------------------------------------------------------------------------------------
 	CreateBaseFrame = function (self, type, name, parent, template, width, height, has_backdrop)
-		local generic_frame = CreateFrame(type, name, parent, template)
+		if template == nil then
+			template = "BackdropTemplate"
+		end
+		local generic_frame = CreateFrame(type, name, parent, _G.BackdropTemplateMixin and template)
 		generic_frame:SetWidth(width)
 		generic_frame:SetHeight(height)
 		generic_frame:SetParent(parent)
 		-- Add a background to the frame if we want it
 		if has_backdrop ~= nil and has_backdrop == true then
-			generic_frame:SetBackdrop({
-				bgFile = "Interface/Tooltips/UI-Tooltip-Background",
-				edgeFile = "Interface/Tooltips/UI-Tooltip-Border",
+			local backdropInfo = {
+				bgFile = "Interface\\Tooltips\\UI-Tooltip-Background",
+				edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
 				tile = true,
 				tileSize = 16,
 				edgeSize = 16,
 				insets = { left = 4, right = 4, top = 4, bottom = 4 }
-			})
-			--  Black background
+			}
+			generic_frame:SetBackdrop(backdropInfo)
 			generic_frame:SetBackdropColor(0,0,0,1)
 		end
 		-- make sure mouse is captured on our window (NO clicking through)
@@ -160,7 +163,7 @@ MTSLUI_TOOLS = {
 		local TEXTURES_BUTTON = {
 			SELECTED = "Interface\\Buttons\\UI-Listbox-Highlight",
 			HIGHLIGHTED = "Interface\\Tooltips\\UI-Tooltip-Background",
-			NOT_SELECTED = "",
+			NOT_SELECTED = MTSLUI_ADDON_PATH .. "\\Images\\empty.blp",
 		}
 
 		local b = CreateFrame("Button", name, event_class.ui_frame)
@@ -379,7 +382,7 @@ MTSLUI_TOOLS = {
 			-- keep it open so we can (un)check multiple items at once
 			info.keepShownOnClick = true
 			info.hasArrow = false
-			UIDropDownMenu_AddButton(info)
+			-- UIDropDownMenu_AddButton(info)
 		end
 	end,
 

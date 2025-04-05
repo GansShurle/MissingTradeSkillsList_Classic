@@ -6,3 +6,6 @@
 
 # ignore debug files
 /debug
+
+# ignore .vscode
+/.vscode
