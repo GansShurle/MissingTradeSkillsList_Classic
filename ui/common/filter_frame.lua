@@ -12,8 +12,6 @@ MTSLUI_FILTER_FRAME = {
     FRAME_WIDTH_HORIZONTAL = 515,
     -- height of the frame
     FRAME_HEIGHT = 110,
-    -- all available phases
-    phases= {},
     -- all contintents
     continents = {},
     -- all zones for each contintent
@@ -687,7 +685,6 @@ MTSLUI_FILTER_FRAME = {
             self.ui_frame.specialisation_drop_down:Hide()
             -- Update the list of specialisations for the current profession
             self:BuildSpecialisations()
-            self:CreateDropDownSpecialisations()
             -- Show it again after rebuild
             self.ui_frame.specialisation_drop_down:Show()
             self:UpdateFilters()

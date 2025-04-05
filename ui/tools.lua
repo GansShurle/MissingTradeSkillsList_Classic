@@ -382,7 +382,7 @@ MTSLUI_TOOLS = {
 			-- keep it open so we can (un)check multiple items at once
 			info.keepShownOnClick = true
 			info.hasArrow = false
-			-- UIDropDownMenu_AddButton(info)
+			UIDropDownMenu_AddButton(info)
 		end
 	end,
 
